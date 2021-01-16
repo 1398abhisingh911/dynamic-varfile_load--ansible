@@ -1,0 +1,14 @@
+- hosts: all
+  tasks:
+  - include_vars:
+      file: "{{ansible_os_family}}.yml"
+      name: x
+      
+  - debug:
+      var: "{{ x['name'] }}"
+  - package:
+      name: "{{ x['name'] }}"
+      state: present
+  - service:
+      name: "{{ x['name'] }}"
+      state: started 
